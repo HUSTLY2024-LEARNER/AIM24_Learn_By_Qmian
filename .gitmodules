@@ -1,0 +1,15 @@
+[submodule "Modules/CangoMake"]
+	path = Modules/CangoMake
+	url = https://github.com/TaciturnJian/CangoMake
+[submodule "Modules/Cango.CommonUtils"]
+	path = Modules/Cango.CommonUtils
+	url = https://github.com/TaciturnJian/Cango.CommonUtils
+[submodule "Modules/Cango.TaskDesign"]
+	path = Modules/Cango.TaskDesign
+	url = https://github.com/TaciturnJian/Cango.TaskDesign
+[submodule "Modules/Cango.ByteCommunication"]
+	path = Modules/Cango.ByteCommunication
+	url = https://github.com/TaciturnJian/Cango.ByteCommunication
+[submodule "Modules/Cango.GalaxySDK"]
+	path = Modules/Cango.GalaxySDK
+	url = https://github.com/TaciturnJian/Cango.GalaxySDK

@@ -1,0 +1,6 @@
+#ifdef _WINDOWS
+#undef GetObject
+#undef GetMessage
+#undef max
+#undef min
+#endif

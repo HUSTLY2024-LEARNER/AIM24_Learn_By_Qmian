@@ -1,0 +1,9 @@
+/usr/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" -S /home/hustlyrm/LangYa-qmy/LangYa-master -B /home/hustlyrm/LangYa-qmy/LangYa-master/cmake-build-debug
+/usr/bin/xauth: (stdin):2:  key contains odd number of or non-hex characters
+-- Configuring incomplete, errors occurred!
+See also "/home/hustlyrm/LangYa-qmy/LangYa-master/cmake-build-debug/CMakeFiles/CMakeOutput.log".
+See also "/home/hustlyrm/LangYa-qmy/LangYa-master/cmake-build-debug/CMakeFiles/CMakeError.log".
+CMake Error at CMakeLists.txt:1 (cmake_minimum_required):
+  CMake 3.28.6 or higher is required.  You are running version 3.16.3
+
+

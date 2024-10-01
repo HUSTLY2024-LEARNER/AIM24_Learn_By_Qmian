@@ -1,0 +1,48 @@
+/usr/bin/cmake -DCMAKE_BUILD_TYPE=Debug -S /home/hustlyrm/LangYa-qmy/LangYa-master -B /home/hustlyrm/LangYa-qmy/LangYa-master/cmake-build-debug-hostss
+-- Taskflow found. Headers: /usr/local/include/
+-- Found required Ceres dependency: Eigen version 3.4.0 in /usr/local/share/eigen3/cmake
+-- Found Ceres compiled with miniglog substitute for glog, beware this will likely cause problems if glog is later linked.
+-- Found Ceres version: 2.2.0 installed in: /usr/local with components: [EigenSparse, SparseLinearAlgebraLibrary, LAPACK, SchurSpecializations]
+-- LangYa> 鍦ㄧ洰褰曚腑娣诲姞1涓瓙妯″潡(imgui-docking-1.90.8)锛�/home/hustlyrm/LangYa-qmy/LangYa-master/Thirdparties
+-- imgui> 缂哄皯鍙傛暟锛歋OURCE_DIR銆傚皢璁剧疆涓� Sources
+-- imgui> 缂哄皯鍙傛暟锛欻EADER_DIR銆傚皢璁剧疆涓� Headers
+-- imgui> 缂哄皯鍙傛暟锛欳XX_STANDARD銆傚皢璁剧疆涓� 26
+-- imgui> 缂哄皯鍙傛暟锛歍ESTER_DIR銆傚皢璁剧疆涓� Testers
+-- imgui::imgui> 鎵惧埌5涓簮鏂囦欢
+-- imgui::imgui> 璁剧疆澶存枃浠剁洰褰曪細Headers
+-- imgui::imgui> 璁剧疆 C++ 鏍囧噯锛�26
+-- imgui::imgui> 鍦ㄧ洰鏍囩洰褰曟病鏈夋壘鍒板彲鎵ц绋嬪簭锛�/home/hustlyrm/LangYa-qmy/LangYa-master/Thirdparties/imgui-docking-1.90.8/Testers
+-- LangYa> 鍦ㄧ洰褰曚腑娣诲姞4涓瓙妯″潡(Cango.CommonUtils|Cango.TaskDesign|Cango.ByteCommunication|Cango.GalaxySDK)锛�/home/hustlyrm/LangYa-qmy/LangYa-master/Modules
+-- Cango.CommonUtils> EnableScopeNotifier: ON
+-- Cango.CommonUtils> AsyncItemPool_EnableScopeNotifier: ON
+-- Cango.CommonUtils> IntervalSleeper_EnableScopeNotifier: ON
+-- Cango.CommonUtils> ObjectOwnership_EnableScopeNotifier: ON
+-- Cango::CommonUtils> 鎵惧埌4涓簮鏂囦欢
+-- Cango::CommonUtils> 璁剧疆澶存枃浠剁洰褰曪細Headers
+-- Cango::CommonUtils> 璁剧疆 C++ 鏍囧噯锛�26
+-- Cango::CommonUtils> 閾炬帴鍒板簱锛歠mt::fmt|spdlog::spdlog|Boost::system|Boost::filesystem|Threads::Threads
+-- Cango::CommonUtils> 鍑嗗娣诲姞5涓彲鎵ц绋嬪簭
+-- Cango::CommonUtils> 娣诲姞绋嬪簭锛欳ango_CommonUtils_CallRateCounterTester
+-- Cango::CommonUtils> 娣诲姞绋嬪簭锛欳ango_CommonUtils_DeliveryTest
+-- Cango::CommonUtils> 娣诲姞绋嬪簭锛欳ango_CommonUtils_PoolTester
+-- Cango::CommonUtils> 娣诲姞绋嬪簭锛欳ango_CommonUtils_RateTester
+-- Cango::CommonUtils> 娣诲姞绋嬪簭锛欳ango_CommonUtils_ScopeTester
+-- Cango.TaskDesign> 缂哄皯鍙傛暟锛歋OURCE_DIR銆傚皢璁剧疆涓� Sources
+-- Cango.TaskDesign> 缂哄皯鍙傛暟锛欻EADER_DIR銆傚皢璁剧疆涓� Headers
+-- Cango.TaskDesign> 缂哄皯鍙傛暟锛欳XX_STANDARD銆傚皢璁剧疆涓� 26
+-- Cango.TaskDesign> 缂哄皯鍙傛暟锛歍ESTER_DIR銆傚皢璁剧疆涓� Testers
+-- Cango::TaskDesign> 鎵惧埌2涓簮鏂囦欢
+-- Cango::TaskDesign> 璁剧疆澶存枃浠剁洰褰曪細Headers
+-- Cango::TaskDesign> 璁剧疆 C++ 鏍囧噯锛�26
+-- Cango::TaskDesign> 閾炬帴鍒板簱锛欳ango::CommonUtils|matchit::matchit
+CMake Error at Modules/CangoMake/Cango/AddCXXModule.cmake:125 (message):
+  Cango.TaskDesign> 缂哄皯瀵硅薄锛歮atchit::matchit
+Call Stack (most recent call first):
+  Modules/CangoMake/Cango/AddCXXModule.cmake:144 (Cango_AddCXXModule_RequireLibrary)
+  Modules/CangoMake/Cango/AddCXXModule.cmake:211 (Cango_AddCXXModule_SetProperties)
+  Modules/Cango.TaskDesign/CMakeLists.txt:12 (AddCXXModule)
+
+
+-- Configuring incomplete, errors occurred!
+See also "/home/hustlyrm/LangYa-qmy/LangYa-master/cmake-build-debug-hostss/CMakeFiles/CMakeOutput.log".
+See also "/home/hustlyrm/LangYa-qmy/LangYa-master/cmake-build-debug-hostss/CMakeFiles/CMakeError.log".
