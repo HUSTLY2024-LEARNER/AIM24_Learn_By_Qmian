@@ -332,7 +332,7 @@ EKF的核心思想是在每个时间步对非线性方程进行泰勒展开，�
 
 接下来，计算子弹到达位置 x 所需的时间 t：$t=kwind​⋅v⋅cos(θ)exp(kwind​⋅x)−1​$
 
-然后，计算子弹在垂直方向上的位移 y： $y=v⋅sin(θ)⋅t−21​⋅GRAVITY⋅t2$
+然后，计算子弹在垂直方向上的位移 y： $y=v⋅sin(θ)⋅t−\frac{1}{2}​⋅GRAVITY⋅t^{2}$
 
 将 t 的表达式代入 y 的计算中，可以得到发射到达的垂直高度 $y=v⋅sin(θ)⋅(kwind​⋅v⋅cos(θ)exp(kwind​⋅x)−1​)−\frac{1}{2}⋅GRAVITY⋅(kwind​⋅v⋅cos(θ)exp(kwind​⋅x)−1​)^{2}$
 
