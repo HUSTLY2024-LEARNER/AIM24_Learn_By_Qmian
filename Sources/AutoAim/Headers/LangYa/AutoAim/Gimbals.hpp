@@ -1,4 +1,4 @@
-#pragma once
+#pragma once // 防止重复包含
 
 #include <Cango/ByteCommunication/BoostImplementations/BoostRWerProvider.hpp>
 #include <Cango/ByteCommunication/Core/TypedMessage.hpp>
@@ -12,17 +12,18 @@ namespace LangYa :: inline Gimbals :: inline Messages {
 	using AngleType = float;
 	using Angle100Type = std::int16_t;
 	using RadianType = float;
-
+    // 角度转弧度
 	inline RadianType ToRadian(const AngleType angle) noexcept { return angle * std::numbers::pi_v<float> / 180.0f; }
-
+    // 弧度转角度
 	inline AngleType ToAngle(const RadianType radian) noexcept { return radian * 180.0f / std::numbers::pi_v<float>; }
 
 #pragma pack(push, 1)
+    // 云台的yaw&pitch
 	struct GimbalAnglesType {
 		AngleType Yaw;
 		Angle100Type Pitch;
 	};
-
+    // x&y
 	struct VelocityType {
 		std::int8_t X;
 		std::int8_t Y;
@@ -62,7 +63,6 @@ namespace LangYa :: inline Gimbals :: inline Messages {
 
 	struct GimbalData {
 		static constexpr auto TypeID = 0;
-
 		GimbalAnglesType GimbalAngles;
 		std::uint16_t Unused;
 		VelocityType Velocity;
@@ -80,6 +80,7 @@ namespace LangYa :: inline Gimbals :: inline Messages {
 		UWBPositionType UWBPosition{};
 	};
 
+    // 云台数据验证：大小是否正常
 	namespace GimbalSensorVerification {
 		constexpr auto DataSize = sizeof(GimbalData);
 		static_assert(sizeof(GimbalData) == sizeof(GameData), "inconsistent size of messages");
@@ -87,6 +88,7 @@ namespace LangYa :: inline Gimbals :: inline Messages {
 
 	using GimbalSensorData = Cango::TypedMessage<GimbalSensorVerification::DataSize>;
 
+    // 控制云台的信息
 	struct GimbalControlData {
 		std::uint8_t HeadFlag{'!'};
 		VelocityType Velocity;
@@ -167,12 +169,12 @@ namespace LangYa :: inline Gimbals :: inline Tasks {
 		Cango::ObjectOwner<Cango::EasyDeliveryTaskMonitor> WriterMonitor{
 			std::make_shared<Cango::EasyDeliveryTaskMonitor>()
 		};
-
+        // 用于配置任务所需的资源，如消息池和监控器
 		EasyGimbalCommunicationTaskDispatcherPoolsAndMonitors() noexcept {
-			auto&& config = Dispatcher->Configure();
+			auto&& config = Dispatcher->Configure();// 配置信息
 			const auto actors = config.Actors;
-			actors.GameDataPool = GameDataPool;
-			actors.GimbalDataPool = GimbalDataPool;
+			actors.GameDataPool = GameDataPool;// 游戏数据池
+			actors.GimbalDataPool = GimbalDataPool;// 云台数据池
 		}
 
 		template <Cango::IsRWerProvider TProvider>
@@ -188,7 +190,7 @@ namespace LangYa :: inline Gimbals :: inline Tasks {
 			actors.WriterMonitor = WriterMonitor;
 		}
 	};
-
+    // 自瞄任务
 	using AutoAimGimbalCommunicationTask = EasyGimbalCommunicationTask<Cango::CangoSerialPortRWerProvider>;
 
 	struct GimbalCheatsheet {

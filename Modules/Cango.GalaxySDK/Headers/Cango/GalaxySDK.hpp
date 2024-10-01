@@ -134,12 +134,12 @@ namespace Cango::GalaxySDK {
 	using CameraDeliveryTask = DeliveryTask<GxCameraProvider, GxCameraConsumer, EasyDeliveryTaskMonitor>;
 
 	struct GxCameraCheatsheet {
-		Owner<TripleItemPool<cv::Mat>> ImagePool{};
-		Owner<GxCameraProvider> Provider{};
-		Owner<GxCameraConsumer> Consumer{};
-		Owner<EasyDeliveryTaskMonitor> DeliveryMonitor{};
-		Owner<EasyDeliveryTaskMonitor> CaptureMonitor{};
-		CameraDeliveryTask Task{};
+		Owner<TripleItemPool<cv::Mat>> ImagePool{};// 一个智能指针，指向一个 TripleItemPool管理 cv::Mat
+		Owner<GxCameraProvider> Provider{};// 从相机捕获图像
+		Owner<GxCameraConsumer> Consumer{};// 处理捕获的图像
+		Owner<EasyDeliveryTaskMonitor> DeliveryMonitor{};// 监控图像交付任务的状态
+		Owner<EasyDeliveryTaskMonitor> CaptureMonitor{};// 监控图像捕获任务的状态
+		CameraDeliveryTask Task{};// 处理图像的交付逻辑
 
 		GxCameraCheatsheet();
 	};

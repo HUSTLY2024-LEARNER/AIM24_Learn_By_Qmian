@@ -20,7 +20,7 @@ namespace LangYa:: inline ArmorDetectors {
 				min_offset = offset;
 				min_offset_index = i;
 			}
-
+            // 选出最近的装甲板
 			return min_offset_index;
 		}
 

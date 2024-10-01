@@ -38,11 +38,11 @@ endmacro()
 		)
 #]]
 function (AddModulesInDirectory)
-	set(ARGS_OPTIONS QUIET)
-	set(ARGS_VALUES DIRECTORY)
-	set(ARGS_LISTS NAMES)
+	set(ARGS_OPTIONS QUIET)# 执行时不输出信息
+	set(ARGS_VALUES DIRECTORY)# 添加模块的目录路径
+	set(ARGS_LISTS NAMES)# 添加模块的名称列表
 	cmake_parse_arguments(ARG "${ARGS_OPTIONS}" "${ARGS_VALUES}" "${ARGS_LISTS}" ${ARGN})
 
-	Cango_AddModulesInDirectory_GuardArgs_Directory()
-	Cango_AddModulesInDirectory_Process()
+	Cango_AddModulesInDirectory_GuardArgs_Directory()# 检查是否有效
+	Cango_AddModulesInDirectory_Process()# 遍历一个指定的目录，将该目录下的所有子模块添加到CMake构建系统中
 endfunction()

@@ -13,14 +13,14 @@ using namespace LangYa;
 namespace {
 	class Application {
 		std::string Name{"autoaim"};
-		Cango::ObjectOwner<CorrectedDetector> Detector{std::make_shared<CorrectedDetector>()};
-		Cango::ObjectOwner<ArmorFilter> Filter{std::make_shared<ArmorFilter>()};
-		CameraIntrinsicsParameterPack CameraIntrinsics{};
-		Cango::ObjectOwner<PoseSolver> Solver{std::make_shared<PoseSolver>(CameraIntrinsics)};
-		Cango::ObjectOwner<Predictor> ArmorPredictor{std::make_shared<Predictor>()};
-		Cango::GalaxySDK::GxCameraCheatsheet CameraCheatsheet{};
-		GimbalCheatsheet Gimbals{};
-		NaviServerCheatsheet Navis{};
+		Cango::ObjectOwner<CorrectedDetector> Detector{std::make_shared<CorrectedDetector>()};// 检测
+		Cango::ObjectOwner<ArmorFilter> Filter{std::make_shared<ArmorFilter>()};// 装甲板筛选
+		CameraIntrinsicsParameterPack CameraIntrinsics{};// 初始化相机内参
+		Cango::ObjectOwner<PoseSolver> Solver{std::make_shared<PoseSolver>(CameraIntrinsics)};// 解算
+		Cango::ObjectOwner<Predictor> ArmorPredictor{std::make_shared<Predictor>()};// 预测
+		Cango::GalaxySDK::GxCameraCheatsheet CameraCheatsheet{};// 管理相机相关的资源
+		GimbalCheatsheet Gimbals{};// 云台
+		NaviServerCheatsheet Navis{};// 导航
 		MainService Mains{};
 
 		void ConfigureCamera() noexcept {
@@ -28,9 +28,10 @@ namespace {
 
 			const auto default_logger = spdlog::default_logger();
 
+            // 捕获图像
 			auto& provider = *sheet.Provider;
 			{
-				auto&& config = provider.Configure();
+				auto&& config = provider.Configure();// 相机配置
 
 				const auto actors = config.Actors;
 				actors.Logger = default_logger;
@@ -53,6 +54,7 @@ namespace {
 				cp.BlueBalanceRatio.Value = 1.9414;
 			}
 
+            // 处理
 			auto& consumer = *sheet.Consumer;
 			{
 				auto&& config = consumer.Configure();
@@ -60,6 +62,7 @@ namespace {
 				options.MinInterval = 0ms;
 			}
 
+            // 交付逻辑
 			auto& provider_task = sheet.Task;
 			{
 				auto&& config = provider_task.Configure();
@@ -68,6 +71,7 @@ namespace {
 			}
 		}
 
+        // 云台&串口配置
 		void ConfigureGimbal() noexcept {
 			{
 				const auto default_logger = spdlog::default_logger();
@@ -100,6 +104,7 @@ namespace {
 			}
 		}
 
+        // 导航
 		void ConfigureNavi() noexcept {
 			{
 				const auto default_logger = spdlog::default_logger();

@@ -1,6 +1,105 @@
 # AIM_LEARNING BY Qmian
 
+## GalaxySDK.hpp
+
+**struct GxCameraOpenParameter**：结构体定义了相机打开使用的参数
+
+**struct GxCameraConfigureParameter**：相机配置的一些参数：包括曝光，增益，白平衡比率比率，应用配置到相机设备的成员函数 `Apply`
+
+**GxCameraProvider**：封装了与相机设备提供者相关的配置和操作
+
+**CameraCaptureTask 类型别名**
+
+定义了一个捕获任务类型，用于捕获相机图像
+
+**GxCameraConsumer类**
+
+- 封装了与相机图像consumer相关的操作
+- 提供了配置、检查功能状态和设置相机项目的功能
+
+**CameraDeliveryTask 类型别名**
+
+定义了一个交付任务类型，用于在相机提供者和consumer之间传输图像
+
+**GxCameraCheatsheet 结构体**
+
+- 封装了相机操作的完整工作流，包括图像池、提供者、消费者、监控器和交付任务
+- 构造函数初始化所有成员，并配置它们之间的依赖关系
+
+**TimedPicture 结构体**
+
+定义了带时间戳的图片数据结构。
+
+**TimedGxCamera 结构体**
+
+定义了带时间戳的相机设备，提供了获取带时间戳的图片项目的功能
+
+**TimedCameraCaptureTask 类型别名**
+
+定义了一个带时间戳的相机捕获任务类型
+
+**TimedGxCameraProvider 类**
+
+- 封装了与带时间戳的相机设备提供者相关的操作
+- 提供了配置、检查功能状态和获取带时间戳的相机项目的功能
+
+**TimedGxCameraConsumer类**
+
+定义了一个空的消费者类，可能用于后续扩展
+
+
+
+## Gimbals.hpp
+
+**命名空间 `LangYa::inline Gimbals::inline Messages`**
+
+- **类型别名**：定义了一些类型别名，如`AngleType`、`Angle100Type`和`RadianType`
+- **转换函数**：`ToRadian`和`ToAngle`函数用于角度和弧度之间的转换。
+- **结构体**：定义了多个结构体，用于表示云台的角度、速度、UWB（超宽带）位置、开火代码和game代码
+- **静态断言**：确保`GimbalData`和`GameData`结构体的大小一致。
+- **`GimbalSensorData`**：使用`Cango::TypedMessage`模板定义了一个类型，用于处理云台传感器数据
+
+**命名空间 `LangYa::inline Gimbals::inline Actors`**
+
+- **`GimbalMessageDispatcher`类**：用于处理云台消息，包含消息池和日志记录器
+- **配置方法**：`Configure`方法返回配置信息
+- **功能性检查**：`IsFunctional`方法检查消息池和日志记录器是否有效
+- **消息设置**：`SetItem`方法根据消息类型将数据设置到相应的消息池中
+
+**命名空间 `LangYa::inline Gimbals::inline Tasks`**
+
+- **任务模板**：`EasyGimbalCommunicationTask`是一个模板，用于创建云台通信任务
+- **任务配置**：`EasyGimbalCommunicationTaskDispatcherPoolsAndMonitors`结构体用于配置任务所需的资源，如消息池和监控器
+- **自动瞄准任务**：`AutoAimGimbalCommunicationTask``EasyGimbalCommunicationTask`的特化，用于串口通信
+- **作弊表**：`GimbalCheatsheet`结构体包含了一个自动瞄准任务、任务配置和提供者（Provider），用于初始化和配置任务
+
 ## ArmorDetectors
+
+### Armor.hpp
+
+**装甲板结构体**
+
+struct ArmorObject
+
+{
+
+enum ColorEntry：枚举的颜色类别（红，蓝，灰，其他）
+
+cv::Rect2f Rectangular：外接矩形
+
+int type：类型
+
+int color：颜色
+float prob：置信度
+std::vector<cv::Point2f> points：点  
+int area：面积
+cv::Point2f apex[4]：角点
+
+bool IsLarge() const {  
+    return color % 2 == 1;  
+}：是否是大装甲板
+
+}
 
 #### InferenceAPI
 
@@ -86,9 +185,23 @@
   
   说明：用到了多个描述算子，可以看作多个滤波结果，更全面。然后把多个组成一个行向量，丢进svm预测器
 
-### ROIAccelerator
+### CorrectedDetector.hpp
 
-使用ROI加速推理
+使用ROI加速推理，先在ROI内检测，若检测出，角点要加上ROI的左上坐标以标准化；若未检测出，则在整个图中进行检测
+
+### ArmorFilter.hpp
+
+**namespace LangYa:: inline ArmorDetectors**
+
+class ArmorFilter final
+
+- 选出离目标最近装甲板的索引
+
+static float GetArmorRatio(const cv::Point2f points[4])
+
+- 获得装甲板的宽高比
+
+后面一些根据装甲板的类别和颜色判断状态
 
 ## PoseSolver.cpp
 
@@ -359,6 +472,13 @@ EKF的核心思想是在每个时间步对非线性方程进行泰勒展开，�
 从pnp解算的位置到相对云台的yaw&pitch
 
 ## 可改参数
+
+- Main.cpp 调曝光&增益
+  
+  ```
+  cp.ExposureTime.Value = 4000;
+  cp.Gain.Value = 16.0f;
+  ```
 
 - PoseSolver.hpp中相机内参
 
